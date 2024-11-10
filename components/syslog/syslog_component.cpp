@@ -67,7 +67,7 @@ void SyslogComponent::log(uint8_t level, const std::string &tag, const std::stri
         tag.c_str(),
         LOG_KERN
     );
-    if(!syslog.log(esphome_to_syslog_log_levels[level],  payload.c_str())) {
+    if(!syslog.log(esphome_to_syslog_log_levels[level],  (payload + "\n").c_str())) {
         ESP_LOGW(TAG, "Tried to send \"%s\"@\"%s\" with level %d but but failed for an unknown reason", tag.c_str(), payload.c_str(), level);
     }
 }
